@@ -1,7 +1,5 @@
 ﻿/*
- * written by Joseph Hocking 2017
- * released under MIT license
- * text of license https://opensource.org/licenses/MIT
+ * written by Arsen Sargsyan 2021
  */
 
 using System.Collections;
@@ -14,6 +12,7 @@ using UnityEngine;
 public class FpsMovement : MonoBehaviour
 {
     [SerializeField] private Camera headCam;
+    [SerializeField] private GameObject torch;
 
     public float speed = 6.0f;
     public float gravity = -9.8f;
@@ -38,6 +37,7 @@ public class FpsMovement : MonoBehaviour
         MoveCharacter();
         RotateCharacter();
         RotateCamera();
+        SpecialCommands();
     }
 
     private void MoveCharacter()
@@ -69,4 +69,14 @@ public class FpsMovement : MonoBehaviour
             rotationVert, headCam.transform.localEulerAngles.y, 0
         );
     }
-}
+
+    private void SpecialCommands()
+    {
+        if (Input.GetKeyDown((KeyCode)116))
+        {
+#pragma warning disable CS0618 // Type or member is obsolete
+            torch.SetActive(!torch.active);
+#pragma warning restore CS0618 // Type or member is obsolete
+        }
+    }
+} 

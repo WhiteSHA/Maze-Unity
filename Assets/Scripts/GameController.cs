@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 [RequireComponent(typeof(MazeConstructor))]  
 
@@ -9,6 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] protected FpsMovement player;
     [SerializeField] protected Text timeLabel;
     [SerializeField] protected Text scoreLabel;
+    [SerializeField] protected Camera miniMapCam;
 
     private MazeConstructor generator;
 
@@ -43,18 +45,21 @@ public class GameController : MonoBehaviour
 
     private void StartNewMaze()
     {
+        SetPlayerStartPoint();
+
         int pointOfStartGate = generator.GenerateNewMaze(Rows, Cols, OnStartTrigger, OnGoalTrigger);
-
-        float x = generator.startCol * generator.hallWidth;
-        float y = 1;
-        float z = generator.startRow * generator.hallWidth;
-        player.transform.position = new Vector3(x, y, z);
-
-        goalReached = 0;
-        player.enabled = true;
 
         timeLimit -= reduceLimitBy;
         startTime = DateTime.Now;
+
+        scoreLabel.text = score.ToString();
+        scoreLabel.alignment = TextAnchor.MiddleCenter;
+
+        SetPlayerStartPoint();
+        SetMiniMapCameraSettings();
+
+        goalReached = 0;
+        player.enabled = true;
     }
 
     void Update()
@@ -76,30 +81,134 @@ public class GameController : MonoBehaviour
             timeLabel.text = "TIME UP";
             player.enabled = false;
 
-            Invoke("StartNewGame", 4);
+            
+            generator.goalPos.Clear();
+
+            Invoke("StartNewGame", 1);
         }
+    }
+
+    private void SetPlayerStartPoint()
+    {
+        float x = generator.startCol * generator.hallWidth;
+        float y = 2.0f;
+        float z = generator.startRow * generator.hallWidth;
+        player.transform.position = new Vector3(x, y, z);
+        player.transform.eulerAngles = new Vector3(
+            player.transform.eulerAngles.x,
+            90,
+            player.transform.eulerAngles.z
+        );
+    }
+
+    private void SetMiniMapCameraSettings()
+    {
+        
     }
 
     private void OnGoalTrigger(GameObject trigger, GameObject other)
     {
-        Debug.Log("Goal !");
-        goalReached++;
-        
-        score++;
+        //goalReached++;
+
+        /*score++;
         scoreLabel.text = score.ToString();
+        */
+
+        foreach (Point go in generator.goalPos)
+        {
+            if (go.posX == trigger.transform.position.x && go.posY == trigger.transform.position.y)
+            {
+                generator.goalPos.Remove(go);
+            }
+        }
+        generator.goalPos.Clear();
+
+        if (trigger.name == "True Exit")
+        {
+            GameObject gate = GameObject.Find("Exit Gate T");
+            if (gate != null)
+            {
+                Light[] lights = gate.GetComponentsInChildren<Light>();
+                if (lights != null)
+                {
+                    foreach (Light light in lights)
+                    {
+                        light.intensity = 3;
+                        light.color = new Color(0.255f, 0.785f, 0.225f, 1f);
+                    }
+                }
+
+                ParticleSystem[] particleSysytems = gate.GetComponentsInChildren<ParticleSystem>();
+                if (lights != null)
+                {
+                    foreach (ParticleSystem particalSys in particleSysytems)
+                    {
+                        if (particalSys.name != "Smoke" && particalSys.name != "Sparks")
+                        {
+                            ParticleSystem.MainModule settings = particalSys.GetComponent<ParticleSystem>().main;
+                            settings.startColor = new ParticleSystem.MinMaxGradient(new Color(0.4937346f, 1, 0.2764151f, 0.7f));
+                        }
+                        else if (particalSys.name == "Sparks")
+                        {
+                            ParticleSystem.MainModule settings = particalSys.GetComponent<ParticleSystem>().main;
+                            settings.startColor = new ParticleSystem.MinMaxGradient(new Color(0.4937346f, 1, 0.2764151f, 0.6f), new Color(0.4937346f, 1, 0.2764151f, 0.8f));
+                        }
+                    }
+                }
+            }
+            
+            score++;
+            scoreLabel.text = "You win";
+            scoreLabel.alignment = TextAnchor.MiddleLeft;
+            player.enabled = false;
+
+            Invoke("StartNewMaze", 1);
+        }
+        else
+        {
+            GameObject gate = GameObject.Find("Exit Gate " + trigger.name.Substring(4));
+            if (gate != null)
+            {
+                Light[] lights = gate.GetComponentsInChildren<Light>();
+                if (lights != null)
+                {
+                    foreach (Light light in lights)
+                    {
+                        light.intensity = 5;
+                        light.color = new Color(0.785f, 0.255f, 0.225f, 1f);
+                    }
+                }
+
+                ParticleSystem[] particleSysytems = gate.GetComponentsInChildren<ParticleSystem>();
+                if (lights != null)
+                {
+                    foreach (ParticleSystem particalSys in particleSysytems)
+                    {
+                        if (particalSys.name != "Smoke" && particalSys.name != "FireDark" && particalSys.name != "Sparks")
+                        {
+                            ParticleSystem.MainModule settings = particalSys.GetComponent<ParticleSystem>().main;
+                            settings.startColor = new ParticleSystem.MinMaxGradient(new Color(0.785f, 0.255f, 0.225f, 1f));
+                        }
+                        else if(particalSys.name == "Sparks")
+                        {
+                            ParticleSystem.MainModule settings = particalSys.GetComponent<ParticleSystem>().main;
+                            settings.startColor = new ParticleSystem.MinMaxGradient(new Color(0.785f, 0.255f, 0.225f, 0.255f), new Color(1f, 0.4745701f, 0f, 1f));
+                        }
+                    }
+                }
+            }
+        }
 
         Destroy(trigger);
     }
 
     private void OnStartTrigger(GameObject trigger, GameObject other)
     {
-        if(goalReached >= 3)
+        /*if(goalReached >= 3)
         {
-            Debug.Log("Finish!!!");
-
             player.enabled = false;
 
-            Invoke("StartNewMaze", 4);
-        }
+            Invoke("StartNewMaze", 1);
+        }*/
     }
 }

@@ -46,11 +46,8 @@ public class MazeMeshGenerator
                                           new Vector3(width, width, 1)
                                           ), ref newVertices, ref newUVs, ref floorTriangles);*/
 
-                    // Left 
                     if (i - 1 < 0 || data[i - 1, j] == 1)
                     {
-                        if (data[i, j] == 2)
-                            continue;
                         AddQuad(Matrix4x4.TRS(
                             new Vector3(j * width, halfH, (i - .5f) * width),
                             Quaternion.LookRotation(Vector3.forward),
@@ -58,7 +55,6 @@ public class MazeMeshGenerator
                         ), ref newVertices, ref newUVs, ref wallTriangles);
                     }
 
-                    // Under
                     if (j + 1 > cMax || data[i, j + 1] == 1)
                     {
                         AddQuad(Matrix4x4.TRS(
@@ -68,7 +64,6 @@ public class MazeMeshGenerator
                         ), ref newVertices, ref newUVs, ref wallTriangles);
                     }
 
-                    // Upper
                     if (j - 1 < 0 || data[i, j - 1] == 1)
                     {
                         AddQuad(Matrix4x4.TRS(
@@ -78,7 +73,6 @@ public class MazeMeshGenerator
                         ), ref newVertices, ref newUVs, ref wallTriangles);
                     }
 
-                    // Right
                     if (i + 1 > rMax || data[i + 1, j] == 1)
                     {
                         AddQuad(Matrix4x4.TRS(

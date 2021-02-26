@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Generated
+  - Minimap
+  - PlayerTorch
+  - ExitGateTorch
+  - ExitGateLights
+  - Parent
   layers:
   - Default
   - TransparentFX
@@ -14,9 +19,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Red
+  - Blue
+  - Minimap
   - 
   - 
   - 

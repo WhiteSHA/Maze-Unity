@@ -47,7 +47,7 @@ public class MazeDataGenerator
             else if (xPoint == sizeRows)
                 xPoint = sizeRows - 1;
 
-            maze[xPoint, 0] = 2;
+            maze[xPoint, 0] = (int)Identificators.START_GATE; 
 
             if (maze[xPoint, 1] == 0)
             {
@@ -58,6 +58,9 @@ public class MazeDataGenerator
                 maze[xPoint, 0] = 1;
         }
 
+        int trueExit = (int)(Random.value * 3);
+
+        // Generating exit 1
         while (true)
         {
             int yPoint = (int)(Random.value * sizeCols);
@@ -66,7 +69,10 @@ public class MazeDataGenerator
             else if (yPoint == sizeCols)
                 yPoint = sizeCols - 1;
 
-            maze[0, yPoint] = 3;
+            if(trueExit == 0)
+                maze[0, yPoint] = (int)Identificators.TRUE_EXIT_GATE;
+            else
+                maze[0, yPoint] = (int)Identificators.EXIT_GATE;
 
             if (maze[1, yPoint] == 0)
                 break;
@@ -74,6 +80,7 @@ public class MazeDataGenerator
                 maze[0, yPoint] = 1;
         }
 
+        // Generating exit 2
         while (true)
         {
             int yPoint = (int)(Random.value * sizeCols);
@@ -82,7 +89,10 @@ public class MazeDataGenerator
             else if (yPoint == sizeCols)
                 yPoint = sizeCols - 1;
 
-            maze[sizeRows - 1, yPoint] = 3;
+            if (trueExit == 1)
+                maze[sizeRows - 1, yPoint] = (int)Identificators.TRUE_EXIT_GATE;
+            else
+                maze[sizeRows - 1, yPoint] = (int)Identificators.EXIT_GATE;
 
             if (maze[sizeRows - 2, yPoint] == 0)
                 break;
@@ -90,6 +100,7 @@ public class MazeDataGenerator
                 maze[sizeRows - 1, yPoint] = 1;
         }
 
+        // Generating exit 3
         while (true)
         {
             int xPoint = (int)(Random.value * sizeRows);
@@ -98,7 +109,10 @@ public class MazeDataGenerator
             else if (xPoint == sizeRows)
                 xPoint = sizeRows - 1;
 
-            maze[xPoint, sizeCols - 1] = 3;
+            if (trueExit >= 2)
+                maze[xPoint, sizeCols - 1] = (int)Identificators.TRUE_EXIT_GATE;
+            else
+                maze[xPoint, sizeCols - 1] = (int)Identificators.EXIT_GATE;
 
             if (maze[xPoint, sizeCols - 2] == 0)
             {
