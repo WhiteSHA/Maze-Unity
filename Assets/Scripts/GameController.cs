@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 
 [RequireComponent(typeof(MazeConstructor))]  
 
@@ -19,10 +18,10 @@ public class GameController : MonoBehaviour
 
     private DateTime startTime;
     private int timeLimit;
-    private int reduceLimitBy;
+    //private int reduceLimitBy;
 
     private int score;
-    private int goalReached;
+    //private int goalReached;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +33,7 @@ public class GameController : MonoBehaviour
     private void StartNewGame()
     {
         timeLimit = 80;
-        reduceLimitBy = 5;
+        //reduceLimitBy = 5;
         startTime = DateTime.Now;
 
         score = 0;
@@ -49,7 +48,7 @@ public class GameController : MonoBehaviour
 
         int pointOfStartGate = generator.GenerateNewMaze(Rows, Cols, OnStartTrigger, OnGoalTrigger);
 
-        timeLimit -= reduceLimitBy;
+        //timeLimit -= reduceLimitBy;
         startTime = DateTime.Now;
 
         scoreLabel.text = score.ToString();
@@ -58,7 +57,7 @@ public class GameController : MonoBehaviour
         SetPlayerStartPoint();
         SetMiniMapCameraSettings();
 
-        goalReached = 0;
+        //goalReached = 0;
         player.enabled = true;
     }
 
@@ -84,7 +83,7 @@ public class GameController : MonoBehaviour
             
             generator.goalPos.Clear();
 
-            Invoke("StartNewGame", 1);
+            Invoke(nameof(StartNewGame), 1);
         }
     }
 
@@ -103,7 +102,7 @@ public class GameController : MonoBehaviour
 
     private void SetMiniMapCameraSettings()
     {
-        
+
     }
 
     private void OnGoalTrigger(GameObject trigger, GameObject other)
@@ -162,7 +161,7 @@ public class GameController : MonoBehaviour
             scoreLabel.alignment = TextAnchor.MiddleLeft;
             player.enabled = false;
 
-            Invoke("StartNewMaze", 1);
+            Invoke(nameof(StartNewMaze), 1);
         }
         else
         {
