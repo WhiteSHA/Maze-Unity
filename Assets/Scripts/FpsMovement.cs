@@ -13,6 +13,7 @@ public class FpsMovement : MonoBehaviour
 {
     [SerializeField] private Camera headCam;
     [SerializeField] private GameObject torch;
+    [SerializeField] private GameObject exitGameDialog;
 
     public float speed = 6.0f;
     public float gravity = -9.8f;
@@ -76,6 +77,12 @@ public class FpsMovement : MonoBehaviour
         {
 #pragma warning disable CS0618 // Type or member is obsolete
             torch.SetActive(!torch.active);
+#pragma warning restore CS0618 // Type or member is obsolete
+        }
+        else if(Input.GetKeyDown((KeyCode)27))
+        {
+#pragma warning disable CS0618 // Type or member is obsolete
+            exitGameDialog.SetActive(!exitGameDialog.active);
 #pragma warning restore CS0618 // Type or member is obsolete
         }
     }

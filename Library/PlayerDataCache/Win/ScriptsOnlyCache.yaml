@@ -4,22 +4,93 @@ ScriptsOnlyBuild:
     - FpsMovement
     - GameController
     - MazeConstructor
+    - SpeedTutorMainMenuSystem.Init_LoadPreferences
+    - SpeedTutorMainMenuSystem.MenuController
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
+    UnityEditor.UI.dll:
+    - UnityEditor.UI.CanvasScalerEditor
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.RawImage
+    - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
+    - UnityEngine.UI.Toggle
   sceneClasses:
-    Assets/Scene.unity:
+    Assets/Scenes/MainMenu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11292}
+    - Class: 114
+      Script: {instanceID: 11450}
+    - Class: 114
+      Script: {instanceID: 11490}
+    - Class: 114
+      Script: {instanceID: 11826}
+    - Class: 114
+      Script: {instanceID: 11884}
+    - Class: 114
+      Script: {instanceID: 12272}
+    - Class: 114
+      Script: {instanceID: 12590}
+    - Class: 114
+      Script: {instanceID: 12762}
+    - Class: 114
+      Script: {instanceID: 13076}
+    - Class: 114
+      Script: {instanceID: 13114}
+    - Class: 114
+      Script: {instanceID: 13128}
+    - Class: 114
+      Script: {instanceID: 13144}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/Scene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -55,25 +126,25 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11262}
+      Script: {instanceID: 11292}
     - Class: 114
-      Script: {instanceID: 11420}
+      Script: {instanceID: 11450}
     - Class: 114
-      Script: {instanceID: 11460}
+      Script: {instanceID: 11490}
     - Class: 114
-      Script: {instanceID: 11850}
+      Script: {instanceID: 11884}
     - Class: 114
-      Script: {instanceID: 12258}
+      Script: {instanceID: 12294}
     - Class: 114
-      Script: {instanceID: 12270}
+      Script: {instanceID: 12306}
     - Class: 114
-      Script: {instanceID: 12396}
+      Script: {instanceID: 12432}
     - Class: 114
-      Script: {instanceID: 12508}
+      Script: {instanceID: 12544}
     - Class: 114
-      Script: {instanceID: 12722}
+      Script: {instanceID: 12762}
     - Class: 114
-      Script: {instanceID: 13074}
+      Script: {instanceID: 13114}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -213,6 +284,12 @@ ScriptsOnlyBuild:
     className: SignalAsset
   - hash:
       serializedVersion: 2
+      Hash: 1faa9935de48c0e500bbd56db4407c67
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MeshCombiner
+  - hash:
+      serializedVersion: 2
       Hash: 0dbc3be398b4869a5c8d0d8481ee402c
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -265,6 +342,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Shadow
+  - hash:
+      serializedVersion: 2
+      Hash: f3d4a4664206635ce68d214582d770ca
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: SpeedTutorMainMenuSystem
+    className: MenuController
   - hash:
       serializedVersion: 2
       Hash: 5f170942ee57c7a568f5bcfc7521adea
@@ -423,6 +506,18 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
+      Hash: d676f7f7a42596d1b94144c197936196
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Brightness
+  - hash:
+      serializedVersion: 2
+      Hash: d16ebfd12c3d58a6aef6a37891f399b5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: SpeedTutorMainMenuSystem
+    className: Init_LoadPreferences
+  - hash:
+      serializedVersion: 2
       Hash: 6939772cb3ce775a8e8d99f332534491
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -553,13 +648,8 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 1faa9935de48c0e500bbd56db4407c67
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MeshCombiner
   platform: 5
   scenePathNames:
-  - Assets/Scene.unity
+  - Assets/Scenes/MainMenu.unity
+  - Assets/Scenes/Scene.unity
   playerPath: C:/Users/arsen/Desktop/maze/RandomMaze.exe

@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(MazeConstructor))]  
@@ -10,6 +11,8 @@ public class GameController : MonoBehaviour
     [SerializeField] protected Text timeLabel;
     [SerializeField] protected Text scoreLabel;
     [SerializeField] protected Camera miniMapCam;
+
+    public string _mainMenuScene;
 
     private MazeConstructor generator;
 
@@ -209,5 +212,15 @@ public class GameController : MonoBehaviour
 
             Invoke("StartNewMaze", 1);
         }*/
+    }
+
+    public void ExitGame()
+    {
+        player.enabled = false;
+        generator.goalPos.Clear();
+
+        // clean current game data
+
+        SceneManager.LoadScene(_mainMenuScene);
     }
 }

@@ -72,6 +72,10 @@
     <Compile Include="Assets\Scripts\MazeDataGenerator.cs" />
     <Compile Include="Assets\Scripts\MazeMeshGenerator.cs" />
     <Compile Include="Assets\Scripts\TriggerEventRouter.cs" />
+    <Compile Include="Assets\SpeedTutor_Full_Menu_System\GUI Elements\UI_BrightnessShader\Brightness.cs" />
+    <Compile Include="Assets\SpeedTutor_Full_Menu_System\MenuScripts\Init_LoadPreferences.cs" />
+    <Compile Include="Assets\SpeedTutor_Full_Menu_System\MenuScripts\MenuController.cs" />
+    <None Include="Assets\SpeedTutor_Full_Menu_System\GUI Elements\UI_BrightnessShader\BrightnessEffect.shader" />
     <None Include="Assets\Hovl Studio\Procedural fire\Shaders\FireSphere.shader" />
     <None Include="Assets\SkySerie Freebie\Hdri setup.txt" />
     <None Include="Assets\Hovl Studio\Procedural fire\Demo scene\Readme.txt" />
