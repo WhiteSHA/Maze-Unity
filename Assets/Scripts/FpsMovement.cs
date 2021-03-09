@@ -2,8 +2,7 @@
  * written by Arsen Sargsyan 2021
  */
 
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -25,6 +24,9 @@ public class FpsMovement : MonoBehaviour
     public float maximumVert = 45.0f;
 
     private float rotationVert = 0;
+
+    private DateTime startTime;
+    private int timeLimit = 1;
 
     private CharacterController charController;
 
@@ -84,6 +86,20 @@ public class FpsMovement : MonoBehaviour
 #pragma warning disable CS0618 // Type or member is obsolete
             exitGameDialog.SetActive(!exitGameDialog.active);
 #pragma warning restore CS0618 // Type or member is obsolete
+        }
+        else if(Input.GetKeyDown((KeyCode)304))
+        {
+            speed = 12.0f;
+            startTime = DateTime.Now;
+        }
+        else if(Input.GetKeyUp((KeyCode)304))
+        {
+            speed = 6.0f;
+        }
+
+        if((int)(DateTime.Now - startTime).TotalSeconds > timeLimit)
+        {
+            speed = 6.0f;
         }
     }
 } 

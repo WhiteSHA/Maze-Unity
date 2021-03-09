@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MazeMeshGenerator
@@ -7,10 +8,13 @@ public class MazeMeshGenerator
     public float width;     // how wide are hallways
     public float height;    // how tall are hallways
 
-    public MazeMeshGenerator()
+    public GameObject wallTorch;
+
+    public MazeMeshGenerator(GameObject wallTorch)
     {
         width = 3.75f;
         height = 4.5f;
+        this.wallTorch = wallTorch;
     }
 
     public Mesh FromData(int[,] data)
@@ -53,6 +57,12 @@ public class MazeMeshGenerator
                             Quaternion.LookRotation(Vector3.forward),
                             new Vector3(width, height, 1)
                         ), ref newVertices, ref newUVs, ref wallTriangles);
+
+                        /*GameObject go = GameObject.Instantiate(wallTorch);
+                        go.transform.position = new Vector3(j * width, halfH, (i - .5f) * width);
+                        go.transform.eulerAngles = new Vector3(go.transform.eulerAngles.x, go.transform.eulerAngles.y + 90, go.transform.eulerAngles.z);
+                        go.tag = "Generated";
+                        go.AddComponent<BoxCollider>();*/
                     }
 
                     if (j + 1 > cMax || data[i, j + 1] == 1)

@@ -27,6 +27,7 @@ public class MazeConstructor : MonoBehaviour
     [SerializeField] private Material treasureMat;
     [SerializeField] private GameObject startGate;
     [SerializeField] private GameObject exitGate;
+    [SerializeField] private GameObject wallTorch;
 
     private int sizeOfCols;
     private int sizeOfRows;
@@ -46,7 +47,7 @@ public class MazeConstructor : MonoBehaviour
         };
 
         dataGenerator = new MazeDataGenerator();
-        meshGenerator = new MazeMeshGenerator();
+        meshGenerator = new MazeMeshGenerator(wallTorch);
     }
 
     public int GenerateNewMaze(int sizeRows, int sizeCols, TriggerEventHandler startCallback = null, TriggerEventHandler goalCallback = null)

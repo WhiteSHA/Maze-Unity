@@ -12,8 +12,6 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
-    UnityEditor.UI.dll:
-    - UnityEditor.UI.CanvasScalerEditor
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.EventTrigger
@@ -134,6 +132,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11884}
     - Class: 114
+      Script: {instanceID: 12272}
+    - Class: 114
       Script: {instanceID: 12294}
     - Class: 114
       Script: {instanceID: 12306}
@@ -143,6 +143,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12544}
     - Class: 114
       Script: {instanceID: 12762}
+    - Class: 114
+      Script: {instanceID: 13076}
     - Class: 114
       Script: {instanceID: 13114}
     - Class: 115
@@ -434,7 +436,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 6dfb7a26131e53e7236126f7eaf988a2
+      Hash: c2f4136562cef48646bea3e41fe8d3f7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -494,7 +496,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: d49de8d494f874dddb521dccd94dc3ff
+      Hash: 4949054d53ffa9d7e2197b168a13c4cc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FpsMovement
