@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(MazeConstructor))]  
+[RequireComponent(typeof(MazeConstructor))]
 
 public class GameController : MonoBehaviour
 {
@@ -66,7 +66,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if(!player.enabled)
+        if (!player.enabled)
         {
             return;
         }
@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
         int timeUsed = (int)(DateTime.Now - startTime).TotalSeconds;
         int timeLeft = timeLimit - timeUsed;
 
-        if(timeLeft > 0)
+        if (timeLeft > 0)
         {
             timeLabel.text = timeLeft.ToString();
         }
@@ -83,7 +83,7 @@ public class GameController : MonoBehaviour
             timeLabel.text = "TIME UP";
             player.enabled = false;
 
-            
+
             generator.goalPos.Clear();
 
             Invoke(nameof(StartNewGame), 1);
@@ -158,7 +158,7 @@ public class GameController : MonoBehaviour
                     }
                 }
             }
-            
+
             score++;
             scoreLabel.text = "You win";
             scoreLabel.alignment = TextAnchor.MiddleLeft;
@@ -191,7 +191,7 @@ public class GameController : MonoBehaviour
                             ParticleSystem.MainModule settings = particalSys.GetComponent<ParticleSystem>().main;
                             settings.startColor = new ParticleSystem.MinMaxGradient(new Color(0.785f, 0.255f, 0.225f, 1f));
                         }
-                        else if(particalSys.name == "Sparks")
+                        else if (particalSys.name == "Sparks")
                         {
                             ParticleSystem.MainModule settings = particalSys.GetComponent<ParticleSystem>().main;
                             settings.startColor = new ParticleSystem.MinMaxGradient(new Color(0.785f, 0.255f, 0.225f, 0.255f), new Color(1f, 0.4745701f, 0f, 1f));

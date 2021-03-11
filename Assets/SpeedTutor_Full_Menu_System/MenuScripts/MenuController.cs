@@ -43,7 +43,7 @@ namespace SpeedTutorMainMenuSystem
         [SerializeField] private Slider controllerSenSlider;
         public float controlSenFloat = 2f;
         [Space(10)]
-        [SerializeField] private Brightness brightnessEffect;
+        //[SerializeField] private Brightness brightnessEffect;
         [SerializeField] private Slider brightnessSlider;
         [SerializeField] private Text brightnessText;
         [Space(10)]
@@ -172,13 +172,13 @@ namespace SpeedTutorMainMenuSystem
 
         public void BrightnessSlider(float brightness)
         {
-            brightnessEffect.brightness = brightness;
+            //brightnessEffect.brightness = brightness;
             brightnessText.text = brightness.ToString("0.0");
         }
 
         public void BrightnessApply()
         {
-            PlayerPrefs.SetFloat("masterBrightness", brightnessEffect.brightness);
+            //PlayerPrefs.SetFloat("masterBrightness", brightnessEffect.brightness);
             Debug.Log(PlayerPrefs.GetFloat("masterBrightness"));
             StartCoroutine(ConfirmationBox());
         }
@@ -214,7 +214,7 @@ namespace SpeedTutorMainMenuSystem
         {
             if (GraphicsMenu == "Brightness")
             {
-                brightnessEffect.brightness = defaultBrightness;
+                //brightnessEffect.brightness = defaultBrightness;
                 brightnessSlider.value = defaultBrightness;
                 brightnessText.text = defaultBrightness.ToString("0.0");
                 BrightnessApply();
