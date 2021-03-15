@@ -868,7 +868,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 764410924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2323dc86dcd1a9469f00cd9b136855b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fdb200a00161484795cf79f2fde3415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1773131083}
@@ -899,6 +899,7 @@ MonoBehaviour:
     type: 3}
   exitGate: {fileID: 7804729502561013497, guid: ae407b87f0e5ade4eafcb1066c9e7ace,
     type: 3}
+  wallTorch: {fileID: 0}
 --- !u!4 &764410927
 Transform:
   m_ObjectHideFlags: 0
