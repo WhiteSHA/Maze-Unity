@@ -8,7 +8,7 @@ namespace SpeedTutorMainMenuSystem
         #region Variables
         //BRIGHTNESS
         [Space(20)]
-        //[SerializeField] private Brightness brightnessEffect;
+        [SerializeField] private Brightness brightnessEffect;
         [SerializeField] private Text brightnessText;
         [SerializeField] private Slider brightnessSlider;
 
@@ -33,11 +33,9 @@ namespace SpeedTutorMainMenuSystem
 
         private void Awake()
         {
-            Debug.Log("Loading player prefs test");
-
             if (canUse)
             {
-                /*//BRIGHTNESS
+                //BRIGHTNESS
                 if (brightnessEffect != null)
                 {
                     if (PlayerPrefs.HasKey("masterBrightness"))
@@ -53,7 +51,7 @@ namespace SpeedTutorMainMenuSystem
                     {
                         menuController.ResetButton("Brightness");
                     }
-                }*/
+                }
 
                 //VOLUME
                 if (PlayerPrefs.HasKey("masterVolume"))

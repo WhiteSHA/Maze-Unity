@@ -30,6 +30,7 @@ namespace SpeedTutorMainMenuSystem
         [SerializeField] private GameObject gameplayMenu;
         [SerializeField] private GameObject controlsMenu;
         [SerializeField] private GameObject confirmationMenu;
+        [SerializeField] private GameObject QuizesMenu;
         [Space(10)]
         [Header("Menu Popout Dialogs")]
         [SerializeField] private GameObject noSaveDialog;
@@ -43,7 +44,7 @@ namespace SpeedTutorMainMenuSystem
         [SerializeField] private Slider controllerSenSlider;
         public float controlSenFloat = 2f;
         [Space(10)]
-        //[SerializeField] private Brightness brightnessEffect;
+        [SerializeField] private Brightness brightnessEffect;
         [SerializeField] private Slider brightnessSlider;
         [SerializeField] private Text brightnessText;
         [Space(10)]
@@ -72,7 +73,7 @@ namespace SpeedTutorMainMenuSystem
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (menuNumber == 2 || menuNumber == 7 || menuNumber == 8)
+                if (menuNumber == 2 || menuNumber == 7 || menuNumber == 8 || menuNumber == 9)
                 {
                     GoBackToMainMenu();
                     ClickSound();
@@ -154,6 +155,13 @@ namespace SpeedTutorMainMenuSystem
                 newGameDialog.SetActive(true);
                 menuNumber = 7;
             }
+
+            if(buttonType == "Data")
+            {
+                menuDefaultCanvas.SetActive(false);
+                QuizesMenu.SetActive(true);
+                menuNumber = 9;
+            }
         }
         #endregion
 
@@ -172,13 +180,13 @@ namespace SpeedTutorMainMenuSystem
 
         public void BrightnessSlider(float brightness)
         {
-            //brightnessEffect.brightness = brightness;
+            brightnessEffect.brightness = brightness;
             brightnessText.text = brightness.ToString("0.0");
         }
 
         public void BrightnessApply()
         {
-            //PlayerPrefs.SetFloat("masterBrightness", brightnessEffect.brightness);
+            PlayerPrefs.SetFloat("masterBrightness", brightnessEffect.brightness);
             Debug.Log(PlayerPrefs.GetFloat("masterBrightness"));
             StartCoroutine(ConfirmationBox());
         }
@@ -214,7 +222,7 @@ namespace SpeedTutorMainMenuSystem
         {
             if (GraphicsMenu == "Brightness")
             {
-                //brightnessEffect.brightness = defaultBrightness;
+                brightnessEffect.brightness = defaultBrightness;
                 brightnessSlider.value = defaultBrightness;
                 brightnessText.text = defaultBrightness.ToString("0.0");
                 BrightnessApply();
@@ -308,6 +316,7 @@ namespace SpeedTutorMainMenuSystem
             graphicsMenu.SetActive(false);
             soundMenu.SetActive(false);
             gameplayMenu.SetActive(false);
+            QuizesMenu.SetActive(false);
             menuNumber = 1;
         }
 
