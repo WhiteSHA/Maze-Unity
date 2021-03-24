@@ -954,6 +954,7 @@ MonoBehaviour:
   timeLabel: {fileID: 1966176014}
   scoreLabel: {fileID: 1280697454}
   miniMapCam: {fileID: 0}
+  gameIsOverDialog: {fileID: 1471060931}
   _mainMenuScene: MainMenu
   Rows: 11
   Cols: 11
@@ -1657,7 +1658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1471060932
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2009,7 +2010,6 @@ MonoBehaviour:
   headCam: {fileID: 1623668468}
   torch: {fileID: 579473048}
   exitGameDialog: {fileID: 18089422}
-  gameIsOverDialog: {fileID: 1471060931}
   speed: 6
   gravity: -9.8
   sensitivityHor: 9

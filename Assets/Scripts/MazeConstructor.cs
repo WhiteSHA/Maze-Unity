@@ -257,6 +257,7 @@ public class MazeConstructor : MonoBehaviour
 
     private void PlaceGoalTrigger(TriggerEventHandler callback, int lvl)
     {
+        bool isSecond = false;
         Debug.Log("Count of goald = " + goalPos.Count);
         foreach (Point point in goalPos)
         {
@@ -290,9 +291,33 @@ public class MazeConstructor : MonoBehaviour
 
             go.tag = "Generated";
             if (point.type == Identificators.TRUE_EXIT_GATE)
+            {
                 go.name = ("Exit Gate T");
+                if (PlayerPrefs.GetString("QuizzesDataTable" + (lvl - 1)).Length > 5)
+                {
+                    QuizEntry quiz = new QuizEntry();
+                    quiz = JsonUtility.FromJson<QuizEntry>(PlayerPrefs.GetString("QuizzesDataTable" + (lvl - 1)));
+                    go.transform.Find("Cube (3)").GetComponent<Transform>().Find("Cube").GetComponent<Transform>().Find("Canvas").GetComponent<Transform>().Find("Button").GetComponent<Transform>().Find("Text").GetComponent<Text>().text = quiz.correctAnswer;
+                }
+            }
             else
+            {
                 go.name = ("Exit Gate " + point.posX);
+                if (PlayerPrefs.GetString("QuizzesDataTable" + (lvl - 1)).Length > 5)
+                {
+                    QuizEntry quiz = new QuizEntry();
+                    quiz = JsonUtility.FromJson<QuizEntry>(PlayerPrefs.GetString("QuizzesDataTable" + (lvl - 1)));
+
+                    string temp;
+                    if (isSecond)
+                        temp = quiz.wrongAnswer2;
+                    else
+                        temp = quiz.wrongAnswer;
+
+                    go.transform.Find("Cube (3)").GetComponent<Transform>().Find("Cube").GetComponent<Transform>().Find("Canvas").GetComponent<Transform>().Find("Button").GetComponent<Transform>().Find("Text").GetComponent<Text>().text = temp;
+                }
+                isSecond = true;
+            }
             //
 
             Debug.Log("Goal point is detected" + point.posX + " " + point.posY);

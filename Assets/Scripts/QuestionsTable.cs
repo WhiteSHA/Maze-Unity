@@ -136,10 +136,12 @@ public class QuestionsTable : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        if(quizEntryList != null)
-            quizEntryList.Clear();
-        if (quizEntryTransformList != null)
-            quizEntryTransformList.Clear();
+        for (int i = 0; i < quizEntryTransformList.Count; ++i)
+        {
+            Destroy(quizEntryTransformList[i].gameObject);
+        }
+        quizEntryTransformList.Clear();
+        quizEntryList.Clear();
     }
 
     public void ResetData()
