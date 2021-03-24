@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] protected Text timeLabel;
     [SerializeField] protected Text scoreLabel;
     [SerializeField] protected Camera miniMapCam;
+    [SerializeField] private GameObject gameIsOverDialog;
 
     public string _mainMenuScene;
 
@@ -21,10 +22,9 @@ public class GameController : MonoBehaviour
 
     private DateTime startTime;
     private int timeLimit;
-    //private int reduceLimitBy;
 
     private int score;
-    //private int goalReached;
+    private int lvl = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -41,15 +41,27 @@ public class GameController : MonoBehaviour
 
         score = 0;
         scoreLabel.text = score.ToString();
+        lvl = 0;
 
         StartNewMaze();
     }
 
     private void StartNewMaze()
     {
+        lvl++;
+
+        if (PlayerPrefs.GetString("QuizzesDataTable" + (lvl - 1)).Length < 5)
+        {
+#pragma warning disable CS0618 // Type or member is obsolete
+            gameIsOverDialog.transform.Find("ScoreText").GetComponent<Text>().text += score.ToString();
+            gameIsOverDialog.SetActive(!gameIsOverDialog.active);
+#pragma warning restore CS0618 // Type or member is obsolete
+            return;
+        }
+
         SetPlayerStartPoint();
 
-        int pointOfStartGate = generator.GenerateNewMaze(Rows, Cols, OnStartTrigger, OnGoalTrigger);
+        int pointOfStartGate = generator.GenerateNewMaze(Rows, Cols, lvl, OnStartTrigger, OnGoalTrigger);
 
         //timeLimit -= reduceLimitBy;
         startTime = DateTime.Now;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using UnityEngine; 
+using UnityEngine;
+using UnityEngine.UI;
 
 public struct Point
 {
@@ -50,7 +51,7 @@ public class MazeConstructor : MonoBehaviour
         meshGenerator = new MazeMeshGenerator(wallTorch);
     }
 
-    public int GenerateNewMaze(int sizeRows, int sizeCols, TriggerEventHandler startCallback = null, TriggerEventHandler goalCallback = null)
+    public int GenerateNewMaze(int sizeRows, int sizeCols, int lvl, TriggerEventHandler startCallback = null, TriggerEventHandler goalCallback = null)
     {
         if(sizeRows % 2 == 0 && sizeCols % 2 == 0)
         {
@@ -73,8 +74,8 @@ public class MazeConstructor : MonoBehaviour
 
         DisplayMaze();
 
-        PlaceStartTrigger(startCallback);
-        PlaceGoalTrigger(goalCallback);
+        PlaceStartTrigger(startCallback, lvl);
+        PlaceGoalTrigger(goalCallback, lvl);
 
         return pointOfGate;
     }
@@ -219,7 +220,7 @@ public class MazeConstructor : MonoBehaviour
 
     }
 
-    private void PlaceStartTrigger(TriggerEventHandler callback)
+    private void PlaceStartTrigger(TriggerEventHandler callback, int lvl)
     {
         GameObject go = Instantiate(startGate);
         float x = startCol * hallWidth;
@@ -228,6 +229,13 @@ public class MazeConstructor : MonoBehaviour
         go.transform.position = new Vector3(x - 10.82f, y, z - 3.15f);
         go.tag = "Generated";
         go.AddComponent<BoxCollider>();
+
+        if (PlayerPrefs.GetString("QuizzesDataTable" + (lvl - 1)).Length > 5)
+        {
+            QuizEntry quiz = new QuizEntry();
+            quiz = JsonUtility.FromJson<QuizEntry>(PlayerPrefs.GetString("QuizzesDataTable" + (lvl - 1)));
+            go.transform.Find("Cube (3)").GetComponent<Transform>().Find("Cube").GetComponent<Transform>().Find("Canvas").GetComponent<Transform>().Find("Button").GetComponent<Transform>().Find("Text").GetComponent<Text>().text = quiz.question;
+        }
 
         // Set is trigger
         //mc.convex = true;
@@ -247,7 +255,7 @@ public class MazeConstructor : MonoBehaviour
         tc.callback = callback;
     }
 
-    private void PlaceGoalTrigger(TriggerEventHandler callback)
+    private void PlaceGoalTrigger(TriggerEventHandler callback, int lvl)
     {
         Debug.Log("Count of goald = " + goalPos.Count);
         foreach (Point point in goalPos)
@@ -304,5 +312,15 @@ public class MazeConstructor : MonoBehaviour
             TriggerEventRouter tc = goal.AddComponent<TriggerEventRouter>();
             tc.callback = callback;
         }
+    }
+
+    [System.Serializable]
+    private class QuizEntry
+    {
+        public int id = 0;
+        public string question = "";
+        public string correctAnswer = "";
+        public string wrongAnswer = "";
+        public string wrongAnswer2 = "";
     }
 }

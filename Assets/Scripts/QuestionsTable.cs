@@ -41,7 +41,6 @@ public class QuestionsTable : MonoBehaviour
             QuizEntry quizFromDB = JsonUtility.FromJson<QuizEntry>(jsonOfData);
             quizes.quizEntryList.Add(quizFromDB);
         }
-        Debug.Log(quizes.ToString());
         //        
 
         quizEntryList = quizes.quizEntryList;
