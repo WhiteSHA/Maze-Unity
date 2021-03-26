@@ -4,10 +4,16 @@ ScriptsOnlyBuild:
     - FpsMovement
     - GameController
     - MazeConstructor
+    - QuestionsTable
     - SpeedTutorMainMenuSystem.Init_LoadPreferences
     - SpeedTutorMainMenuSystem.MenuController
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -18,9 +24,14 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.Dropdown
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.InputField
+    - UnityEngine.UI.Mask
     - UnityEngine.UI.RawImage
+    - UnityEngine.UI.ScrollRect
+    - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
     - UnityEngine.UI.Toggle
@@ -38,6 +49,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 82
@@ -49,29 +62,49 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11244}
+      Script: {instanceID: 11272}
     - Class: 114
-      Script: {instanceID: 11264}
+      Script: {instanceID: 11274}
     - Class: 114
-      Script: {instanceID: 11422}
+      Script: {instanceID: 11294}
     - Class: 114
-      Script: {instanceID: 11462}
+      Script: {instanceID: 11384}
+    - Class: 114
+      Script: {instanceID: 11454}
+    - Class: 114
+      Script: {instanceID: 11456}
+    - Class: 114
+      Script: {instanceID: 11494}
     - Class: 114
       Script: {instanceID: 11796}
     - Class: 114
-      Script: {instanceID: 11854}
+      Script: {instanceID: 11828}
     - Class: 114
-      Script: {instanceID: 12242}
+      Script: {instanceID: 11886}
     - Class: 114
-      Script: {instanceID: 12560}
+      Script: {instanceID: 11912}
     - Class: 114
-      Script: {instanceID: 12732}
+      Script: {instanceID: 12080}
     - Class: 114
-      Script: {instanceID: 13046}
+      Script: {instanceID: 12464}
     - Class: 114
-      Script: {instanceID: 13084}
+      Script: {instanceID: 12496}
     - Class: 114
-      Script: {instanceID: 13098}
+      Script: {instanceID: 12510}
+    - Class: 114
+      Script: {instanceID: 12590}
+    - Class: 114
+      Script: {instanceID: 12762}
+    - Class: 114
+      Script: {instanceID: 12914}
+    - Class: 114
+      Script: {instanceID: 13076}
+    - Class: 114
+      Script: {instanceID: 13102}
+    - Class: 114
+      Script: {instanceID: 13114}
+    - Class: 114
+      Script: {instanceID: 13128}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -124,29 +157,29 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11264}
+      Script: {instanceID: 11272}
     - Class: 114
-      Script: {instanceID: 11422}
+      Script: {instanceID: 11294}
     - Class: 114
-      Script: {instanceID: 11462}
+      Script: {instanceID: 11454}
     - Class: 114
-      Script: {instanceID: 11854}
+      Script: {instanceID: 11494}
     - Class: 114
-      Script: {instanceID: 12242}
+      Script: {instanceID: 11886}
     - Class: 114
-      Script: {instanceID: 12264}
+      Script: {instanceID: 12294}
     - Class: 114
-      Script: {instanceID: 12402}
+      Script: {instanceID: 12430}
     - Class: 114
-      Script: {instanceID: 12514}
+      Script: {instanceID: 12452}
     - Class: 114
-      Script: {instanceID: 12732}
+      Script: {instanceID: 12544}
     - Class: 114
-      Script: {instanceID: 13046}
+      Script: {instanceID: 12762}
     - Class: 114
-      Script: {instanceID: 13084}
+      Script: {instanceID: 13076}
     - Class: 114
-      Script: {instanceID: 15944}
+      Script: {instanceID: 13114}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -178,6 +211,12 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
+      Hash: 5f1752ed2092162f016c19510c28a8b9
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Button
+  - hash:
+      serializedVersion: 2
       Hash: 7072231382eb3c4871b3dd75ad0227e1
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -206,6 +245,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_Dropdown
+  - hash:
+      serializedVersion: 2
+      Hash: 6909c1edf41afa5117d4911d65616486
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: QuestionsTable
   - hash:
       serializedVersion: 2
       Hash: e7a73f5f78ba6445195ec23b74a1ce2d
@@ -352,7 +397,7 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: 54bc26bdb2c6a542cd9ba12e3fc66a54
+      Hash: 03849d7a0c3f2217645d599d4b2fd64c
     assemblyName: Assembly-CSharp.dll
     namespaceName: SpeedTutorMainMenuSystem
     className: MenuController
@@ -430,12 +475,6 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 5f1752ed2092162f016c19510c28a8b9
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Button
-  - hash:
-      serializedVersion: 2
       Hash: f84d945e5e1ca985698660fc26e9657f
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -452,6 +491,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MazeConstructor
+  - hash:
+      serializedVersion: 2
+      Hash: 94abf9b466f1d2d4ef4d061fa733d766
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameController
   - hash:
       serializedVersion: 2
       Hash: f64fd37da5cb89243ec68b5026d70bb8
@@ -508,7 +553,13 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 3fa0d01ee81041100db9d871693f358a
+      Hash: d676f7f7a42596d1b94144c197936196
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Brightness
+  - hash:
+      serializedVersion: 2
+      Hash: d16ebfd12c3d58a6aef6a37891f399b5
     assemblyName: Assembly-CSharp.dll
     namespaceName: SpeedTutorMainMenuSystem
     className: Init_LoadPreferences
@@ -638,12 +689,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: c2f4136562cef48646bea3e41fe8d3f7
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: GameController
   platform: 5
   scenePathNames:
   - Assets/Scenes/MainMenu.unity

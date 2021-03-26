@@ -184,10 +184,34 @@ public class QuestionsTable : MonoBehaviour
         correctAnswerInput.text = "";
         wrongAnswerInput.text = "";
         wrongAnswer2Input.text = "";
+
+        questionInput.GetComponent<Image>().color = new Color(0.52f, 0.52f, 0.52f);
+        correctAnswerInput.GetComponent<Image>().color = new Color(0.52f, 0.52f, 0.52f);
+        wrongAnswerInput.GetComponent<Image>().color = new Color(0.52f, 0.52f, 0.52f);
     }
 
     public void AddNewQuiz()
     {
+        bool isDataExists = true;
+        if(questionInput.text.Length < 1)
+        {
+            questionInput.GetComponent<Image>().color = new Color(1f, 0.25f, 0.25f);
+            isDataExists = false;
+        }
+        if(correctAnswerInput.text.Length < 1)
+        {
+            correctAnswerInput.GetComponent<Image>().color = new Color(1f, 0.25f, 0.25f);
+            isDataExists = false;
+        }
+        if(wrongAnswerInput.text.Length < 1)
+        {
+            wrongAnswerInput.GetComponent<Image>().color = new Color(1f, 0.25f, 0.25f);
+            isDataExists = false;
+        }
+
+        if (!isDataExists)
+            return;
+
         QuizEntry newQuiz = new QuizEntry
         {
             id = idsDropdown.value + 1,
@@ -222,6 +246,10 @@ public class QuestionsTable : MonoBehaviour
         correctAnswerInput.text = "";
         wrongAnswerInput.text = "";
         wrongAnswer2Input.text = "";
+
+        questionInput.GetComponent<Image>().color = new Color(0.52f, 0.52f, 0.52f);
+        correctAnswerInput.GetComponent<Image>().color = new Color(0.52f, 0.52f, 0.52f);
+        wrongAnswerInput.GetComponent<Image>().color = new Color(0.52f, 0.52f, 0.52f);
     }
 
     private class Quizes

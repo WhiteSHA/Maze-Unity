@@ -36,6 +36,7 @@ namespace SpeedTutorMainMenuSystem
         [SerializeField] private GameObject noSaveDialog;
         [SerializeField] private GameObject newGameDialog;
         [SerializeField] private GameObject loadGameDialog;
+        [SerializeField] private GameObject dataIsNotExistsDialog;
         #endregion
 
         #region Slider Linking
@@ -151,6 +152,13 @@ namespace SpeedTutorMainMenuSystem
 
             if (buttonType == "NewGame")
             {
+                if(PlayerPrefs.GetString("QuizzesDataTable0").Length < 5)
+                {
+                    menuDefaultCanvas.SetActive(false);
+                    dataIsNotExistsDialog.SetActive(true);
+                    return;
+                }
+
                 menuDefaultCanvas.SetActive(false);
                 newGameDialog.SetActive(true);
                 menuNumber = 7;
@@ -186,7 +194,7 @@ namespace SpeedTutorMainMenuSystem
 
         public void BrightnessApply()
         {
-            PlayerPrefs.SetFloat("masterBrightness", brightnessEffect.brightness);
+            //PlayerPrefs.SetFloat("masterBrightness", brightnessEffect.brightness);
             Debug.Log(PlayerPrefs.GetFloat("masterBrightness"));
             StartCoroutine(ConfirmationBox());
         }
@@ -312,6 +320,7 @@ namespace SpeedTutorMainMenuSystem
             newGameDialog.SetActive(false);
             loadGameDialog.SetActive(false);
             noSaveDialog.SetActive(false);
+            dataIsNotExistsDialog.SetActive(false);
             GeneralSettingsCanvas.SetActive(false);
             graphicsMenu.SetActive(false);
             soundMenu.SetActive(false);
