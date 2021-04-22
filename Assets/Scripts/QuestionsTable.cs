@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Net.Http;
+using System.Net;
+using System.IO;
 
 public class QuestionsTable : MonoBehaviour
 {
@@ -14,6 +17,7 @@ public class QuestionsTable : MonoBehaviour
     [SerializeField] InputField correctAnswerInput;
     [SerializeField] InputField wrongAnswerInput;
     [SerializeField] InputField wrongAnswer2Input;
+    [SerializeField] InputField idInput;
 
     private void Awake()
     {
@@ -250,6 +254,17 @@ public class QuestionsTable : MonoBehaviour
         questionInput.GetComponent<Image>().color = new Color(0.52f, 0.52f, 0.52f);
         correctAnswerInput.GetComponent<Image>().color = new Color(0.52f, 0.52f, 0.52f);
         wrongAnswerInput.GetComponent<Image>().color = new Color(0.52f, 0.52f, 0.52f);
+    }
+
+    public void LoadFromServer()
+    {
+        //var id = int.Parse(idInput.text);
+
+        var request = (HttpWebRequest)WebRequest.Create("http://localhost:63489/api/MazeDataItems");
+
+        var response = (HttpWebResponse)request.GetResponse();
+
+        var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
     }
 
     private class Quizes
