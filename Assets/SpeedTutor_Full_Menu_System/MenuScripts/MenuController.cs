@@ -152,7 +152,7 @@ namespace SpeedTutorMainMenuSystem
 
             if (buttonType == "NewGame")
             {
-                if(PlayerPrefs.GetString("QuizzesDataTable0").Length < 5)
+                if(PlayerPrefs.GetString("QuizzesDataTable0").Length < 1)
                 {
                     menuDefaultCanvas.SetActive(false);
                     dataIsNotExistsDialog.SetActive(true);

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Net.Http;
 using System.Net;
 using System.IO;
+using System;
 
 public class QuestionsTable : MonoBehaviour
 {
@@ -18,6 +18,11 @@ public class QuestionsTable : MonoBehaviour
     [SerializeField] InputField wrongAnswerInput;
     [SerializeField] InputField wrongAnswer2Input;
     [SerializeField] InputField idInput;
+
+    [Space(10)]
+    [SerializeField] private GameObject DataFromServerDialog;
+
+    private string dataFromServer = "";
 
     private void Awake()
     {
@@ -258,13 +263,96 @@ public class QuestionsTable : MonoBehaviour
 
     public void LoadFromServer()
     {
-        //var id = int.Parse(idInput.text);
+        if (idInput.text.Length < 1)
+        {
+            idInput.GetComponent<Image>().color = new Color(1f, 0.25f, 0.25f);
+            return;
+        }
 
-        var request = (HttpWebRequest)WebRequest.Create("http://localhost:63489/api/MazeDataItems");
+        var id = System.Convert.ToInt32(idInput.text);
+
+        var request = (HttpWebRequest)WebRequest.Create("http://localhost:63489/api/MazeDataItems/GetByUser/" + id);
 
         var response = (HttpWebResponse)request.GetResponse();
 
         var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
+        dataFromServer = responseString;
+
+        if (PlayerPrefs.GetString("QuizzesDataTable0").Length < 1)
+        {
+            LoadDataFromServer();
+        }
+        else
+        {
+            DataFromServerDialog.SetActive(true);
+        }
+    }
+
+    public void CleanDataOrNo(bool flag)
+    {
+        Debug.Log("flag  ====  " + flag);
+        if (flag)
+        {
+            Debug.Log("297  ====  " + 297);
+            for (int i = 0; i < 20; ++i)
+            {
+                PlayerPrefs.DeleteKey("QuizzesDataTable" + i);
+                PlayerPrefs.Save();
+            }
+        }
+
+        LoadDataFromServer();
+
+        DataFromServerDialog.SetActive(false);
+    }
+
+    private void LoadDataFromServer()
+    {
+        int lastquestionId = 0;
+        for (int i = 0; i < 20; i++)
+        {
+            string jsonOfData = PlayerPrefs.GetString("QuizzesDataTable" + i);
+            if (jsonOfData.Length < 1)
+            {
+                lastquestionId = i;
+                break;
+            }
+        }
+
+        questionInput.text = dataFromServer;
+        Debug.Log(dataFromServer);
+        dataFromServer = dataFromServer.Substring(1, dataFromServer.Length - 3);
+        Debug.Log(dataFromServer);
+
+        string[] temp = dataFromServer.Split(new string[] { "}," }, StringSplitOptions.None);
+
+        List<QuizEntryModed> quizes = new List<QuizEntryModed>();
+        for (int i = 0; i < temp.Length; ++i)
+        {
+            temp[i] += "}";
+            Debug.Log(temp[i]);
+
+            QuizEntryModed quiz = JsonUtility.FromJson<QuizEntryModed>(temp[i]);
+            quizes.Add(quiz);
+        }
+
+        for (int i = 0; i < quizes.Count; ++i)
+        {
+            QuizEntry newEntry = new QuizEntry
+            {
+                id = ++lastquestionId,
+                question = quizes[i].question,
+                correctAnswer = quizes[i].correctAnswer,
+                wrongAnswer = quizes[i].wrongAnswer1,
+                wrongAnswer2 = quizes[i].wrongAnswer2
+            };
+
+            Debug.Log(newEntry);
+
+            quizEntryList.Add(newEntry);
+            CreateQuizeEntryTransform(newEntry, entryContainer, quizEntryTransformList);
+        }
     }
 
     private class Quizes
@@ -280,5 +368,16 @@ public class QuestionsTable : MonoBehaviour
         public string correctAnswer = "";
         public string wrongAnswer = "";
         public string wrongAnswer2 = "";
+    }
+
+    [System.Serializable]
+    private class QuizEntryModed
+    {
+        public int id;
+        public int userId;
+        public string question;
+        public string correctAnswer;
+        public string wrongAnswer1;
+        public string wrongAnswer2;
     }
 }
