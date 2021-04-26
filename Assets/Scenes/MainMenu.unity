@@ -3281,7 +3281,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Clear manual entries? '
+  m_Text: 'Clear old entries? '
 --- !u!222 &848548533
 CanvasRenderer:
   m_ObjectHideFlags: 0

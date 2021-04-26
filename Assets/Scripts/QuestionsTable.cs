@@ -151,6 +151,13 @@ public class QuestionsTable : MonoBehaviour
         }
         quizEntryTransformList.Clear();
         quizEntryList.Clear();
+
+        idsDropdown.options.Clear();
+        for (int i = 0; i < quizEntryList.Count + 1; ++i)
+        {
+            Dropdown.OptionData data = new Dropdown.OptionData { text = (i + 1).ToString() };
+            idsDropdown.options.Add(data);
+        }
     }
 
     public void ResetData()
@@ -234,12 +241,6 @@ public class QuestionsTable : MonoBehaviour
         {
             quizEntryList.Add(newQuiz);
             CreateQuizeEntryTransform(newQuiz, entryContainer, quizEntryTransformList);
-
-            if (newQuiz.id + 1 < 21)
-            {
-                Dropdown.OptionData data = new Dropdown.OptionData { text = (newQuiz.id + 1).ToString() };
-                idsDropdown.options.Add(data);
-            }
         }
         else
         {
@@ -269,7 +270,7 @@ public class QuestionsTable : MonoBehaviour
             return;
         }
 
-        var id = System.Convert.ToInt32(idInput.text);
+        var id = Convert.ToInt32(idInput.text);
 
         var request = (HttpWebRequest)WebRequest.Create("http://localhost:63489/api/MazeDataItems/GetByUser/" + id);
 
@@ -291,10 +292,8 @@ public class QuestionsTable : MonoBehaviour
 
     public void CleanDataOrNo(bool flag)
     {
-        Debug.Log("flag  ====  " + flag);
         if (flag)
         {
-            Debug.Log("297  ====  " + 297);
             for (int i = 0; i < 20; ++i)
             {
                 PlayerPrefs.DeleteKey("QuizzesDataTable" + i);
@@ -309,18 +308,17 @@ public class QuestionsTable : MonoBehaviour
 
     private void LoadDataFromServer()
     {
-        int lastquestionId = 0;
-        for (int i = 0; i < 20; i++)
+        int lastquestionId = quizEntryList.Count;
+
+        if (dataFromServer.Length < 4)
         {
-            string jsonOfData = PlayerPrefs.GetString("QuizzesDataTable" + i);
-            if (jsonOfData.Length < 1)
-            {
-                lastquestionId = i;
-                break;
-            }
+            idInput.text = "";
+            idInput.text = "No data found";
+            idInput.GetComponent<Image>().color = new Color(1f, 0.25f, 0.25f);
+            return;
         }
 
-        questionInput.text = dataFromServer;
+
         Debug.Log(dataFromServer);
         dataFromServer = dataFromServer.Substring(1, dataFromServer.Length - 3);
         Debug.Log(dataFromServer);
@@ -348,11 +346,20 @@ public class QuestionsTable : MonoBehaviour
                 wrongAnswer2 = quizes[i].wrongAnswer2
             };
 
+            if (newEntry.id + 1 < 21)
+            {
+                Dropdown.OptionData data = new Dropdown.OptionData { text = (newEntry.id + 1).ToString() };
+                idsDropdown.options.Add(data);
+            }
+
             Debug.Log(newEntry);
 
             quizEntryList.Add(newEntry);
             CreateQuizeEntryTransform(newEntry, entryContainer, quizEntryTransformList);
         }
+
+        idInput.text = "";
+        idInput.GetComponent<Image>().color = new Color(0.52f, 0.52f, 0.52f);
     }
 
     private class Quizes
@@ -373,11 +380,11 @@ public class QuestionsTable : MonoBehaviour
     [System.Serializable]
     private class QuizEntryModed
     {
-        public int id;
-        public int userId;
-        public string question;
-        public string correctAnswer;
-        public string wrongAnswer1;
-        public string wrongAnswer2;
+        public int id = 0;
+        public int userId = 0;
+        public string question = "";
+        public string correctAnswer = "";
+        public string wrongAnswer1 = "";
+        public string wrongAnswer2 = "";
     }
 }
