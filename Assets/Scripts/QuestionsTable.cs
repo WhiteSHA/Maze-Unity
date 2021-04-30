@@ -272,11 +272,23 @@ public class QuestionsTable : MonoBehaviour
 
         var id = Convert.ToInt32(idInput.text);
 
-        var request = (HttpWebRequest)WebRequest.Create("http://localhost:63489/api/MazeDataItems/GetByUser/" + id);
+        string responseString;
+        try
+        {
+            var request = (HttpWebRequest)WebRequest.Create("http://localhost:63489/api/MazeDataItems/GetByUser/" + id);
 
-        var response = (HttpWebResponse)request.GetResponse();
+            var response = (HttpWebResponse)request.GetResponse();
 
-        var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            Debug.Log(responseString);
+        }
+        catch (WebException ex)
+        {
+            Debug.Log(ex.ToString());
+            idInput.text = "Data retrieval error";
+            idInput.GetComponent<Image>().color = new Color(1f, 0.25f, 0.25f);
+            return;
+        }
 
         dataFromServer = responseString;
 
