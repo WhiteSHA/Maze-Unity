@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: A.S. Production
-  productName: RandomMaze
+  productName: MazeOfSecrets
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -272,7 +272,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: ad2a320fa9c65514f8d65891d4cd7f6c, type: 3}
+      m_Icon: {fileID: 2800000, guid: 36d614236a66a4c4bb3d35cf839f53c8, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
