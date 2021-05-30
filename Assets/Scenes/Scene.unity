@@ -73,7 +73,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
-    m_BakeBackend: 2
+    m_BakeBackend: 1
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 64
@@ -956,8 +956,8 @@ MonoBehaviour:
   miniMapCam: {fileID: 0}
   gameIsOverDialog: {fileID: 1471060931}
   _mainMenuScene: MainMenu
-  Rows: 11
-  Cols: 11
+  Rows: 21
+  Cols: 21
 --- !u!114 &764410926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,7 +979,8 @@ MonoBehaviour:
     type: 3}
   exitGate: {fileID: 7804729502561013497, guid: ae407b87f0e5ade4eafcb1066c9e7ace,
     type: 3}
-  wallTorch: {fileID: 0}
+  wallTorch: {fileID: 6100919564465829728, guid: 2b28efb18dfdbc04b85ba180972d69a6,
+    type: 3}
 --- !u!4 &764410927
 Transform:
   m_ObjectHideFlags: 0
